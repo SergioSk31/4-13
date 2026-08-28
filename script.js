@@ -169,6 +169,31 @@ document.addEventListener('DOMContentLoaded', () => {
     return new Date(stored);
   }
 
+  function updateMedallionGloriaTier(totalDays) {
+    const medallion = document.getElementById('streakMedallion');
+    if (!medallion) return;
+
+    // Remover clases previas
+    medallion.classList.remove(
+      'gloria-tier-0', 'gloria-tier-1', 'gloria-tier-2', 
+      'gloria-tier-3', 'gloria-tier-4', 'gloria-tier-5'
+    );
+
+    if (totalDays >= 90) {
+      medallion.classList.add('gloria-tier-5');
+    } else if (totalDays >= 30) {
+      medallion.classList.add('gloria-tier-4');
+    } else if (totalDays >= 14) {
+      medallion.classList.add('gloria-tier-3');
+    } else if (totalDays >= 7) {
+      medallion.classList.add('gloria-tier-2');
+    } else if (totalDays >= 3) {
+      medallion.classList.add('gloria-tier-1');
+    } else {
+      medallion.classList.add('gloria-tier-0');
+    }
+  }
+
   function updateStreakUI() {
     const startDate = getStreakStartDate();
     const now = new Date();
@@ -177,6 +202,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const streakDaysEl = document.getElementById('streakDays');
     if (streakDaysEl) streakDaysEl.textContent = totalDays;
+
+    // Actualizar nivel de gloria y fuego del Espíritu Santo en el medallón
+    updateMedallionGloriaTier(totalDays);
 
     // Progreso de meta
     let nextMilestone = MILESTONES.find(m => m.days > totalDays);

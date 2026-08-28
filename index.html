@@ -77,9 +77,10 @@
         <!-- TARJETA CENTRAL (ALTAR DE VICTORIA) -->
         <section class="center-altar">
           
-          <!-- MEDALLÓN CENTRAL DE RACHA -->
-          <div class="streak-medallion">
+          <!-- MEDALLÓN CENTRAL DE RACHA (EVOLUCIÓN GLORIOSA Y FUEGO DEL ESPÍRITU SANTO) -->
+          <div class="streak-medallion" id="streakMedallion">
             <div class="sun-halo"></div>
+            <div class="spirit-fire-aura"></div>
             <div class="medallion-inner">
               <div class="streak-count-box">
                 <span id="streakDays" class="streak-number">0</span>
@@ -229,18 +230,15 @@
       <div class="overlay-header">
         <div>
           <span class="overlay-badge">🕊️ DIARIO DE ORACIONES</span>
-          <h2>Mis Conversaciones con Dios</h2>
         </div>
         <button class="btn-close-overlay" data-close="panelPrayers">✕</button>
       </div>
 
       <!-- Formulario para nueva oración -->
       <div class="new-prayer-box">
-        <textarea id="prayerInput" placeholder="Escribe aquí tu oración, agradecimiento o petición al Señor... (Se guardará de forma 100% privada)" rows="3"></textarea>
+        <textarea id="prayerInput" placeholder="Escribe aquí tu oracion." rows="3"></textarea>
         <div class="prayer-form-footer">
-          <button id="savePrayerBtn" class="btn-gold-solid">
-            <span>🙏</span> Guardar Oración
-          </button>
+          <button id="savePrayerBtn" class="btn-gold-solid">Guardar Oración</button>
         </div>
       </div>
 
