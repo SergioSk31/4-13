@@ -43,22 +43,31 @@
 
       <!-- COLUMNA IZQUIERDA: BOTONES DE ACCESO -->
       <aside class="nav-column left-column">
-        <button class="nav-tile" data-target="panelVerse">
+        <button class="nav-tile" id="tileVerse" data-target="panelVerse">
           <div class="tile-icon-box">📖</div>
           <div class="tile-text">
             <h3>Palabra de Hoy</h3>
             <p>Versículo bíblico del día</p>
           </div>
-          <span class="tile-arrow">➔</span>
+          <span class="tile-status-icon">➔</span>
         </button>
 
-        <button class="nav-tile" data-target="panelCommitment">
+        <button class="nav-tile" id="tileCommitment" data-target="panelCommitment">
           <div class="tile-icon-box">🤝</div>
           <div class="tile-text">
             <h3>Mi Compromiso</h3>
             <p>Voto y pacto de fidelidad</p>
           </div>
-          <span class="tile-arrow">➔</span>
+          <span class="tile-status-icon">➔</span>
+        </button>
+
+        <button class="nav-tile" id="tilePrayers" data-target="panelPrayers">
+          <div class="tile-icon-box">🕊️</div>
+          <div class="tile-text">
+            <h3>Diario de Oraciones</h3>
+            <p>Registro personal con Dios</p>
+          </div>
+          <span class="tile-status-icon">➔</span>
         </button>
       </aside>
 
@@ -90,7 +99,7 @@
             </div>
           </div>
 
-          <!-- BOTÓN DE CONFIRMACIÓN 10:00 PM -->
+          <!-- BOTÓN DE CONFIRMACIÓN 10:00 PM A 11:59 PM -->
           <div class="claim-section">
             <button id="claimDailyBtn" class="btn-claim-streak locked">
               <span id="claimText">Disponible a las 10:00 PM</span>
@@ -101,8 +110,10 @@
           <!-- AJUSTES Y REINICIO DE RACHA -->
           <div class="center-footer-actions">
             <button id="resetStreakBtn" class="link-action">Reiniciar Racha</button>
-            <span class="sep">•</span>
-            <button id="setStartDateBtn" class="link-action">Ajustar Fecha</button>
+            <span id="actionSeparator" class="sep">•</span>
+            <span id="adjustDateWrapper">
+              <button id="openAdjustDateModalBtn" class="link-action">Ajustar Fecha</button>
+            </span>
           </div>
 
         </section>
@@ -118,22 +129,22 @@
 
       <!-- COLUMNA DERECHA: BOTONES DE ACCESO -->
       <aside class="nav-column right-column">
-        <button class="nav-tile" data-target="panelHabits">
+        <button class="nav-tile" id="tileHabits" data-target="panelHabits">
           <div class="tile-icon-box">📋</div>
           <div class="tile-text">
             <h3>Hábitos y Rutina</h3>
-            <p>Disciplinas diarias de fe</p>
+            <p>4 disciplinas de fe diarias</p>
           </div>
-          <span class="tile-arrow">➔</span>
+          <span class="tile-status-icon">➔</span>
         </button>
 
-        <button class="nav-tile" data-target="panelIdentity">
+        <button class="nav-tile" id="tileIdentity" data-target="panelIdentity">
           <div class="tile-icon-box">👑</div>
           <div class="tile-text">
             <h3>Identidad en Cristo</h3>
             <p>Quién eres en Dios</p>
           </div>
-          <span class="tile-arrow">➔</span>
+          <span class="tile-status-icon">➔</span>
         </button>
 
         <button class="nav-tile tile-future" data-target="panelFuture">
@@ -142,7 +153,7 @@
             <h3>Próximas Ideas</h3>
             <p>Espacio en preparación</p>
           </div>
-          <span class="tile-arrow">➔</span>
+          <span class="tile-status-icon">➔</span>
         </button>
       </aside>
 
@@ -172,7 +183,15 @@
         </blockquote>
         <cite id="dailyVerseReference" class="gloria-verse-ref">— Referencia bíblica</cite>
       </div>
-      <p class="verse-note">Este versículo permanece firme durante todo el día de hoy para meditar en él y guardar tus pensamientos.</p>
+      <p class="verse-note">Este versículo permanece firme durante todo el día para meditar en él y guardar tus pensamientos.</p>
+      
+      <div class="section-complete-zone">
+        <button id="markVerseReadBtn" class="btn-gloria-action">
+          <span id="verseReadIcon">📖</span>
+          <span id="verseReadText">Marcar como Leído y Meditado</span>
+        </button>
+      </div>
+
       <div class="overlay-actions">
         <button class="btn-gold-outline" data-close="panelVerse">← Volver al Altar</button>
       </div>
@@ -204,70 +223,108 @@
     </div>
   </div>
 
-  <!-- 3. APARTADO: HÁBITOS Y RUTINA -->
+  <!-- 3. APARTADO: DIARIO DE ORACIONES (NUEVO) -->
+  <div id="panelPrayers" class="gloria-overlay hidden">
+    <div class="overlay-card prayers-card">
+      <div class="overlay-header">
+        <div>
+          <span class="overlay-badge">🕊️ DIARIO DE ORACIONES</span>
+          <h2>Mis Conversaciones con Dios</h2>
+        </div>
+        <button class="btn-close-overlay" data-close="panelPrayers">✕</button>
+      </div>
+
+      <!-- Formulario para nueva oración -->
+      <div class="new-prayer-box">
+        <textarea id="prayerInput" placeholder="Escribe aquí tu oración, agradecimiento o petición al Señor... (Se guardará de forma 100% privada)" rows="3"></textarea>
+        <div class="prayer-form-footer">
+          <button id="savePrayerBtn" class="btn-gold-solid">
+            <span>🙏</span> Guardar Oración
+          </button>
+        </div>
+      </div>
+
+      <!-- Lista de oraciones guardadas -->
+      <div class="prayers-history-header">
+        <h3>📜 Oraciones Anteriores</h3>
+        <div class="backup-actions">
+          <button id="downloadBackupBtn" class="btn-backup" title="Descargar copia de seguridad en archivo .json">
+            📥 Descargar Copia
+          </button>
+          <label class="btn-backup btn-upload-label" title="Restaurar copia de seguridad">
+            📤 Restaurar
+            <input type="file" id="restoreBackupInput" accept=".json" style="display:none;">
+          </label>
+        </div>
+      </div>
+
+      <div class="prayers-list" id="prayersList">
+        <!-- Se llena dinámicamente con JS -->
+      </div>
+
+      <div class="overlay-actions">
+        <button class="btn-gold-outline" data-close="panelPrayers">← Volver al Altar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. APARTADO: HÁBITOS Y RUTINA (4 HÁBITOS + RETO CAMBIANTE) -->
   <div id="panelHabits" class="gloria-overlay hidden">
     <div class="overlay-card habits-card">
       <div class="overlay-header">
         <div>
           <span class="overlay-badge">📋 DISCIPLINAS DIARIAS</span>
-          <h2>Hábitos para Guardar el Corazón</h2>
+          <h2>4 Hábitos para Guardar el Corazón</h2>
         </div>
-        <div class="habits-counter-badge" id="habitsCompletedCount">0/5</div>
+        <div class="habits-counter-badge" id="habitsCompletedCount">0/4</div>
         <button class="btn-close-overlay" data-close="panelHabits">✕</button>
       </div>
 
       <ul class="gloria-habit-list">
+        <!-- Hábito 1 -->
         <li class="habit-row" data-id="habit-1">
           <label class="gloria-checkbox-label">
             <input type="checkbox" id="habit-1">
             <span class="gloria-check"></span>
             <div class="habit-info">
               <span class="habit-name">🌅 Oración al despertar</span>
-              <span class="habit-detail">Consagra tus ojos y mente al Señor antes de mirar pantallas.</span>
+              <span class="habit-detail">Consagra tus ojos y mente a Dios antes de mirar cualquier pantalla.</span>
             </div>
           </label>
         </li>
 
+        <!-- Hábito 2 -->
         <li class="habit-row" data-id="habit-2">
           <label class="gloria-checkbox-label">
             <input type="checkbox" id="habit-2">
             <span class="gloria-check"></span>
             <div class="habit-info">
               <span class="habit-name">📖 Lectura de la Palabra (15 min)</span>
-              <span class="habit-detail">Alimenta tu espíritu con la verdad bíblica.</span>
+              <span class="habit-detail">Nutre tu espíritu y renueva tu entendimiento con la Biblia.</span>
             </div>
           </label>
         </li>
 
-        <li class="habit-row" data-id="habit-3">
+        <!-- Hábito 3: RETO DINÁMICO CAMBIANTE CADA DÍA -->
+        <li class="habit-row dynamic-habit-row" data-id="habit-3">
           <label class="gloria-checkbox-label">
             <input type="checkbox" id="habit-3">
             <span class="gloria-check"></span>
             <div class="habit-info">
-              <span class="habit-name">🏃 Actividad física o caminata</span>
-              <span class="habit-detail">Canaliza tu energía corporal de forma sana y despeja la mente.</span>
+              <span class="habit-name" id="dynamicHabitTitle">🎯 Reto Diario: 30 Flexiones</span>
+              <span class="habit-detail" id="dynamicHabitDesc">Canaliza tu energía con disciplina física.</span>
             </div>
           </label>
         </li>
 
+        <!-- Hábito 4 -->
         <li class="habit-row" data-id="habit-4">
           <label class="gloria-checkbox-label">
             <input type="checkbox" id="habit-4">
             <span class="gloria-check"></span>
             <div class="habit-info">
-              <span class="habit-name">📵 Dejar el celular fuera del alcance antes de dormir</span>
-              <span class="habit-detail">Elimina la ocasión de caer en la soledad de la noche.</span>
-            </div>
-          </label>
-        </li>
-
-        <li class="habit-row" data-id="habit-5">
-          <label class="gloria-checkbox-label">
-            <input type="checkbox" id="habit-5">
-            <span class="gloria-check"></span>
-            <div class="habit-info">
               <span class="habit-name">🙏 Oración de gratitud nocturna</span>
-              <span class="habit-detail">Agradece a Dios por un día más de victoria y gracia.</span>
+              <span class="habit-detail">Agradece por un día más de victoria y entrega tu descanso al Señor.</span>
             </div>
           </label>
         </li>
@@ -279,7 +336,7 @@
     </div>
   </div>
 
-  <!-- 4. APARTADO: IDENTIDAD EN CRISTO -->
+  <!-- 5. APARTADO: IDENTIDAD EN CRISTO (BOTÓN 'RECORDADO') -->
   <div id="panelIdentity" class="gloria-overlay hidden">
     <div class="overlay-card">
       <div class="overlay-header">
@@ -306,6 +363,13 @@
             <p>"Antes, en todas estas cosas somos más que vencedores por medio de aquel que nos amó." (Rom 8:37)</p>
           </div>
         </div>
+
+        <div class="section-complete-zone">
+          <button id="markIdentityRememberedBtn" class="btn-gloria-action">
+            <span id="identityIcon">✨</span>
+            <span id="identityText">Recordado</span>
+          </button>
+        </div>
       </div>
       <div class="overlay-actions">
         <button class="btn-gold-outline" data-close="panelIdentity">← Volver al Altar</button>
@@ -313,7 +377,7 @@
     </div>
   </div>
 
-  <!-- 5. APARTADO: PRÓXIMAS IDEAS (ESPACIO EN PREPARACIÓN) -->
+  <!-- 6. APARTADO: PRÓXIMAS IDEAS (ESPACIO EN PREPARACIÓN) -->
   <div id="panelFuture" class="gloria-overlay hidden">
     <div class="overlay-card">
       <div class="overlay-header">
@@ -323,7 +387,7 @@
       <div class="future-inner">
         <div class="future-icon">🏛️</div>
         <h2>Espacio para tus Nuevas Ideas</h2>
-        <p>Este apartado está listo y reservado para que agreguemos juntos las nuevas funciones que desees (como notas de victoria, registro de oraciones, audios o lecturas).</p>
+        <p>Este apartado está listo y reservado para que agreguemos juntos las nuevas funciones que desees.</p>
       </div>
       <div class="overlay-actions">
         <button class="btn-gold-outline" data-close="panelFuture">← Volver al Altar</button>
@@ -332,7 +396,38 @@
   </div>
 
   <!-- ====================================================================== -->
-  <!-- MODAL DE AUXILIO S.O.S (CON RESPLANDOR Y RESPIRACIÓN GUIADA)            -->
+  <!-- MODAL: AJUSTAR FECHA / RECUPERACIÓN DE RACHA (ESTILO TIKTOK)           -->
+  <!-- ====================================================================== -->
+  <div id="adjustDateModal" class="gloria-overlay hidden">
+    <div class="overlay-card adjust-date-card">
+      <button class="btn-close-overlay" id="closeAdjustDateModalBtn">✕</button>
+      
+      <div class="adjust-top">
+        <div class="adjust-icon">⚙️</div>
+        <h2>Ajustar Fecha de Inicio</h2>
+        <p class="adjust-sub">Sistema de recuperación de racha</p>
+      </div>
+
+      <div class="recoveries-badge-box">
+        <span class="recoveries-label">Recuperaciones disponibles este mes:</span>
+        <span id="recoveriesCount" class="recoveries-pill">3/3</span>
+      </div>
+
+      <div class="adjust-form">
+        <label for="newStartDateInput">Selecciona tu fecha de inicio en victoria:</label>
+        <input type="date" id="newStartDateInput" class="gloria-date-picker">
+        <p class="adjust-hint">Solo se permite un máximo de 3 ajustes/recuperaciones por mes.</p>
+      </div>
+
+      <div class="modal-button-group">
+        <button id="confirmAdjustDateBtn" class="btn-gold-solid">Confirmar Fecha</button>
+        <button id="cancelAdjustDateBtn" class="btn-gold-outline">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====================================================================== -->
+  <!-- MODAL: AUXILIO S.O.S (CON RESPIRACIÓN GUIADA)                           -->
   <!-- ====================================================================== -->
   <div id="sosModal" class="gloria-overlay hidden">
     <div class="overlay-card sos-card">
@@ -372,7 +467,9 @@
     </div>
   </div>
 
-  <!-- MODAL REINICIO DE RACHA -->
+  <!-- ====================================================================== -->
+  <!-- MODAL: REINICIO DE RACHA                                               -->
+  <!-- ====================================================================== -->
   <div id="resetModal" class="gloria-overlay hidden">
     <div class="overlay-card reset-card">
       <div class="reset-icon">🌱</div>

@@ -2,7 +2,7 @@
    4:13 | ESTILO GLORIA CELESTIAL (BLANCO Y ORO DIVINO)
    ========================================================================== */
 
-/* 1. PALETA DE COLORES INSPIRADA EN LA GLORIA Y LUZ CELESTIAL */
+/* 1. PALETA DE COLORES */
 :root {
   --bg-heavenly: #FAF7F2;          /* Blanco marfil celestial */
   --bg-heavenly-alt: #F4EFE6;
@@ -75,7 +75,7 @@ html, body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 14px 28px;
+  padding: 12px 24px;
 }
 
 /* 3. CABECERA SUPERIOR */
@@ -83,7 +83,7 @@ html, body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 8px;
+  padding-bottom: 6px;
   border-bottom: 1px solid rgba(212, 175, 55, 0.2);
 }
 
@@ -94,7 +94,7 @@ html, body {
 }
 
 .cross-icon {
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   color: var(--gold-pure);
   text-shadow: 0 0 10px var(--gold-glow);
 }
@@ -119,11 +119,11 @@ html, body {
 
 .live-clock {
   font-family: var(--font-regal);
-  font-size: 0.92rem;
+  font-size: 0.9rem;
   font-weight: 700;
   color: var(--gold-deep);
   background: var(--card-pearl);
-  padding: 5px 14px;
+  padding: 4px 12px;
   border-radius: 9999px;
   border: 1px solid var(--card-border);
   box-shadow: 0 2px 8px rgba(180, 140, 50, 0.08);
@@ -132,10 +132,10 @@ html, body {
 /* 4. DASHBOARD HUB HORIZONTAL */
 .dashboard-hub {
   display: grid;
-  grid-template-columns: 250px 1fr 250px;
-  gap: 24px;
+  grid-template-columns: 260px 1fr 260px;
+  gap: 20px;
   align-items: center;
-  max-width: 1180px;
+  max-width: 1200px;
   width: 100%;
   margin: auto;
   flex: 1;
@@ -145,7 +145,7 @@ html, body {
 .nav-column {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 12px;
 }
 
 /* Botones / Baldosas de acceso */
@@ -153,16 +153,16 @@ html, body {
   background: var(--card-pearl);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--card-border);
+  border: 1.5px solid var(--card-border);
   border-radius: 16px;
-  padding: 15px;
+  padding: 14px 16px;
   display: flex;
   align-items: center;
   gap: 12px;
   text-align: left;
   cursor: pointer;
   box-shadow: var(--shadow-gloria);
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
   position: relative;
   overflow: hidden;
 }
@@ -180,52 +180,88 @@ html, body {
 }
 
 .nav-tile:hover {
-  transform: translateY(-3px) scale(1.02);
+  transform: translateY(-2px) scale(1.02);
   border-color: var(--card-border-hover);
-  box-shadow: 0 14px 28px rgba(212, 175, 55, 0.22);
+  box-shadow: 0 10px 24px rgba(212, 175, 55, 0.25);
 }
 
 .nav-tile:hover::before {
   opacity: 1;
 }
 
+/* ESTADO COMPLETADO DE LA BALDOSA (DORADO BRILLANTE + CHECK) */
+.nav-tile.tile-completed {
+  background: linear-gradient(135deg, #FFF8DB 0%, #FFEBA3 45%, #FFDF73 100%);
+  border-color: #F59E0B;
+  box-shadow: 0 4px 18px rgba(245, 158, 11, 0.3), 0 0 12px rgba(255, 215, 0, 0.4);
+}
+
+.nav-tile.tile-completed .tile-icon-box {
+  background: #FFFFFF;
+  border-color: #F59E0B;
+  box-shadow: 0 2px 6px rgba(180, 140, 50, 0.2);
+}
+
+.nav-tile.tile-completed .tile-text h3 {
+  color: #382400;
+}
+
+.nav-tile.tile-completed .tile-text p {
+  color: #6B4E00;
+}
+
+.nav-tile.tile-completed .tile-status-icon {
+  background: #10B981;
+  color: #FFFFFF;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 900;
+  box-shadow: 0 2px 6px rgba(16, 185, 129, 0.4);
+}
+
 .tile-icon-box {
-  width: 42px;
-  height: 42px;
+  width: 40px;
+  height: 40px;
   background: var(--gold-light-bg);
   border: 1px solid rgba(212, 175, 55, 0.3);
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.35rem;
+  font-size: 1.3rem;
   flex-shrink: 0;
+  transition: all 0.3s;
 }
 
 .tile-text h3 {
   font-family: var(--font-regal);
-  font-size: 0.92rem;
+  font-size: 0.9rem;
   font-weight: 700;
   color: var(--text-main);
   letter-spacing: 0.02em;
 }
 
 .tile-text p {
-  font-size: 0.75rem;
+  font-size: 0.73rem;
   color: var(--text-muted);
-  margin-top: 2px;
+  margin-top: 1px;
 }
 
-.tile-arrow {
+.tile-status-icon {
   margin-left: auto;
   color: var(--gold-pure);
   font-weight: 700;
-  font-size: 0.9rem;
-  transition: transform 0.2s;
+  font-size: 0.85rem;
+  transition: all 0.25s;
 }
 
-.nav-tile:hover .tile-arrow {
-  transform: translateX(4px);
+.nav-tile:hover .tile-status-icon {
+  transform: translateX(3px);
 }
 
 .tile-future {
@@ -238,7 +274,7 @@ html, body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
   width: 100%;
 }
 
@@ -248,13 +284,13 @@ html, body {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: 12px;
-  background: rgba(255, 255, 255, 0.78);
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.82);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 2px solid rgba(212, 175, 55, 0.4);
   border-radius: 26px;
-  padding: 20px 32px 16px;
+  padding: 18px 32px 14px;
   box-shadow: 0 16px 40px rgba(180, 140, 50, 0.15), 0 0 30px rgba(255, 215, 0, 0.1);
   width: 100%;
   max-width: 440px;
@@ -263,8 +299,8 @@ html, body {
 /* Medallón central */
 .streak-medallion {
   position: relative;
-  width: 155px;
-  height: 155px;
+  width: 145px;
+  height: 145px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -272,7 +308,7 @@ html, body {
 
 .sun-halo {
   position: absolute;
-  inset: -12px;
+  inset: -10px;
   border-radius: 50%;
   background: radial-gradient(circle, rgba(255, 215, 0, 0.3) 0%, rgba(245, 158, 11, 0.05) 70%, transparent 80%);
   animation: rotateGlow 20s linear infinite;
@@ -287,8 +323,8 @@ html, body {
 .medallion-inner {
   position: relative;
   z-index: 2;
-  width: 142px;
-  height: 142px;
+  width: 135px;
+  height: 135px;
   border-radius: 50%;
   background: linear-gradient(145deg, #FFFFFF, #FFF9EB);
   border: 3px solid var(--gold-pure);
@@ -300,25 +336,13 @@ html, body {
   padding: 6px;
 }
 
-.medallion-badge {
-  font-family: var(--font-regal);
-  font-size: 0.62rem;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-  color: var(--gold-deep);
-  background: var(--gold-light-bg);
-  padding: 2px 8px;
-  border-radius: 9999px;
-  border: 1px solid rgba(212, 175, 55, 0.3);
-}
-
 .streak-count-box {
-  margin: 2px 0;
+  margin: 0;
 }
 
 .streak-number {
   font-family: var(--font-regal);
-  font-size: 3.6rem;
+  font-size: 3.5rem;
   font-weight: 900;
   line-height: 1;
   color: #785A14;
@@ -328,7 +352,7 @@ html, body {
 
 .streak-unit {
   font-family: var(--font-regal);
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   font-weight: 800;
   letter-spacing: 0.15em;
   color: var(--gold-pure);
@@ -343,10 +367,10 @@ html, body {
 .milestone-header {
   display: flex;
   justify-content: space-between;
-  font-size: 0.76rem;
+  font-size: 0.74rem;
   font-weight: 600;
   color: var(--text-muted);
-  margin-bottom: 4px;
+  margin-bottom: 3px;
 }
 
 .progress-track {
@@ -366,7 +390,7 @@ html, body {
   transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Botón de Confirmación 10:00 PM */
+/* Botón de Confirmación 10:00 PM A 11:59 PM */
 .claim-section {
   width: 100%;
   max-width: 320px;
@@ -376,7 +400,7 @@ html, body {
   width: 100%;
   padding: 9px 16px;
   border-radius: 12px;
-  font-size: 0.88rem;
+  font-size: 0.86rem;
   font-weight: 700;
   font-family: var(--font-ui);
   display: flex;
@@ -424,10 +448,10 @@ html, body {
 }
 
 .claim-info {
-  font-size: 0.75rem;
+  font-size: 0.74rem;
   font-weight: 600;
   color: var(--gold-deep);
-  margin-top: 4px;
+  margin-top: 3px;
 }
 
 /* Acciones secundarias en el centro (SIN SUBRAYADO) */
@@ -444,7 +468,7 @@ html, body {
   border: none;
   color: var(--text-subtle);
   cursor: pointer;
-  text-decoration: none; /* SIN SUBRAYADO */
+  text-decoration: none;
   font-size: 0.75rem;
   font-weight: 500;
   transition: color 0.2s;
@@ -458,13 +482,12 @@ html, body {
   color: var(--text-subtle);
 }
 
-/* 6. BOTÓN DE AUXILIO S.O.S (PROYECCIÓN DE HACES DE LUZ RECTOS) */
+/* 6. BOTÓN DE AUXILIO S.O.S */
 .sos-container-bottom {
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 4px;
 }
 
 .btn-gloria-sos {
@@ -545,7 +568,7 @@ html, body {
   background: #FFFFFF;
   border: 2px solid var(--gold-pure);
   border-radius: 24px;
-  padding: 32px;
+  padding: 28px;
   max-width: 600px;
   width: 100%;
   box-shadow: 0 20px 60px rgba(180, 140, 50, 0.25), 0 0 30px rgba(255, 215, 0, 0.15);
@@ -559,7 +582,7 @@ html, body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 
 .overlay-badge {
@@ -593,19 +616,54 @@ html, body {
   color: #FFFFFF;
 }
 
+/* Zona de acción para completar apartado */
+.section-complete-zone {
+  display: flex;
+  justify-content: center;
+  margin: 16px 0;
+}
+
+.btn-gloria-action {
+  background: var(--gold-light-bg);
+  color: #7A5B15;
+  border: 1.5px solid var(--gold-pure);
+  padding: 10px 24px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  border-radius: 9999px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.25s ease;
+}
+
+.btn-gloria-action:hover {
+  background: var(--gold-pure);
+  color: #FFFFFF;
+  box-shadow: 0 4px 14px rgba(180, 140, 50, 0.2);
+}
+
+.btn-gloria-action.completed {
+  background: var(--emerald-victory);
+  color: #FFFFFF;
+  border-color: var(--emerald-victory);
+  box-shadow: 0 0 15px var(--emerald-glow);
+}
+
 /* Versículo */
 .verse-display-box {
   background: var(--gold-light-bg);
   border-left: 4px solid var(--gold-pure);
-  padding: 24px;
+  padding: 22px;
   border-radius: 12px;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
 }
 
 .gloria-verse-text {
   font-family: var(--font-serif);
-  font-size: 1.35rem;
-  line-height: 1.7;
+  font-size: 1.3rem;
+  line-height: 1.6;
   color: #2E2516;
   font-style: italic;
 }
@@ -613,47 +671,47 @@ html, body {
 .gloria-verse-ref {
   display: block;
   font-family: var(--font-regal);
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 700;
   color: var(--gold-deep);
   text-align: right;
-  margin-top: 14px;
+  margin-top: 12px;
 }
 
 .verse-note {
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   color: var(--text-muted);
-  line-height: 1.5;
-  margin-bottom: 20px;
+  line-height: 1.4;
+  margin-bottom: 14px;
 }
 
 /* Compromiso */
 .commitment-inner {
   text-align: center;
-  padding: 10px 0 20px;
+  padding: 6px 0 16px;
 }
 
 .commitment-emblem {
-  font-size: 3rem;
-  margin-bottom: 10px;
+  font-size: 2.8rem;
+  margin-bottom: 8px;
 }
 
 .commitment-inner h2 {
   font-family: var(--font-regal);
-  font-size: 1.4rem;
+  font-size: 1.35rem;
   color: var(--text-main);
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .commitment-statement {
   font-family: var(--font-serif);
-  font-size: 1.15rem;
+  font-size: 1.1rem;
   font-style: italic;
   color: #4A3E2C;
-  line-height: 1.7;
-  margin-bottom: 24px;
+  line-height: 1.6;
+  margin-bottom: 20px;
   background: var(--gold-light-bg);
-  padding: 20px;
+  padding: 16px;
   border-radius: 14px;
   border: 1px solid rgba(212, 175, 55, 0.25);
 }
@@ -662,8 +720,8 @@ html, body {
   background: linear-gradient(135deg, #FAF7F0, #FFF4D4);
   color: #7A5B15;
   border: 2px solid var(--gold-pure);
-  padding: 14px 28px;
-  font-size: 1rem;
+  padding: 12px 28px;
+  font-size: 0.95rem;
   font-weight: 700;
   font-family: var(--font-ui);
   border-radius: 9999px;
@@ -690,14 +748,158 @@ html, body {
 }
 
 .commit-status-text {
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   color: var(--emerald-victory);
   font-weight: 600;
-  margin-top: 10px;
-  min-height: 20px;
+  margin-top: 8px;
+  min-height: 18px;
 }
 
-/* Hábitos */
+/* 9. DIARIO DE ORACIONES (NUEVA SECCIÓN) */
+.prayers-card {
+  max-width: 680px;
+}
+
+.new-prayer-box {
+  background: rgba(250, 247, 242, 0.85);
+  border: 1.5px solid rgba(212, 175, 55, 0.3);
+  border-radius: 16px;
+  padding: 14px;
+  margin-bottom: 20px;
+}
+
+.new-prayer-box textarea {
+  width: 100%;
+  background: #FFFFFF;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 10px;
+  padding: 12px;
+  font-family: var(--font-ui);
+  font-size: 0.9rem;
+  color: var(--text-main);
+  resize: vertical;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.new-prayer-box textarea:focus {
+  border-color: var(--gold-pure);
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+}
+
+.prayer-form-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+.prayers-history-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.prayers-history-header h3 {
+  font-family: var(--font-regal);
+  font-size: 1rem;
+  color: var(--gold-deep);
+}
+
+.backup-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-backup {
+  background: var(--card-pearl);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  color: var(--gold-deep);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-backup:hover {
+  background: var(--gold-pure);
+  color: #FFFFFF;
+}
+
+.btn-upload-label {
+  display: inline-flex;
+  align-items: center;
+}
+
+.prayers-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 240px;
+  overflow-y: auto;
+  padding-right: 4px;
+  margin-bottom: 16px;
+}
+
+.prayer-item {
+  background: #FFFFFF;
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  border-radius: 12px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  box-shadow: 0 2px 8px rgba(180, 140, 50, 0.06);
+}
+
+.prayer-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.prayer-timestamp {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--gold-deep);
+  background: var(--gold-light-bg);
+  padding: 2px 8px;
+  border-radius: 9999px;
+}
+
+.btn-delete-prayer {
+  background: none;
+  border: none;
+  color: var(--text-subtle);
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: color 0.2s;
+}
+
+.btn-delete-prayer:hover {
+  color: var(--danger-pure);
+}
+
+.prayer-text-body {
+  font-size: 0.88rem;
+  color: var(--text-main);
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
+.no-prayers-msg {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-style: italic;
+  padding: 20px 0;
+}
+
+/* 10. HÁBITOS (4 HÁBITOS) */
 .habits-counter-badge {
   font-family: var(--font-regal);
   background: var(--gold-light-bg);
@@ -713,7 +915,7 @@ html, body {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
 
 .habit-row {
@@ -727,6 +929,11 @@ html, body {
 .habit-row:hover {
   background: #FFFFFF;
   border-color: var(--gold-pure);
+}
+
+.dynamic-habit-row {
+  background: linear-gradient(135deg, rgba(255, 245, 220, 0.9), rgba(255, 255, 255, 0.9));
+  border: 1.5px dashed var(--gold-pure);
 }
 
 .habit-row.checked {
@@ -778,54 +985,135 @@ html, body {
 
 .habit-name {
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   color: var(--text-main);
 }
 
 .habit-detail {
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   color: var(--text-muted);
   margin-top: 2px;
   display: block;
 }
 
-/* Identidad */
+/* 11. IDENTIDAD EN CRISTO */
 .identity-content h2 {
   font-family: var(--font-regal);
-  font-size: 1.3rem;
+  font-size: 1.25rem;
   color: #7A5B15;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
   text-align: center;
 }
 
 .identity-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-bottom: 24px;
+  gap: 10px;
+  margin-bottom: 18px;
 }
 
 .identity-box {
   background: var(--gold-light-bg);
   border: 1px solid rgba(212, 175, 55, 0.25);
   border-radius: 12px;
-  padding: 14px;
+  padding: 12px;
 }
 
 .identity-box h4 {
   font-family: var(--font-regal);
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   color: var(--gold-deep);
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 
 .identity-box p {
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   color: var(--text-muted);
   line-height: 1.4;
 }
 
-/* Modal SOS */
+/* 12. MODAL AJUSTE DE FECHA / RECUPERACIÓN */
+.adjust-date-card {
+  max-width: 480px;
+  text-align: center;
+}
+
+.adjust-top .adjust-icon {
+  font-size: 2.4rem;
+  margin-bottom: 6px;
+}
+
+.adjust-top h2 {
+  font-family: var(--font-regal);
+  font-size: 1.3rem;
+  color: var(--text-main);
+}
+
+.adjust-sub {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+}
+
+.recoveries-badge-box {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--gold-light-bg);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  padding: 6px 16px;
+  border-radius: 9999px;
+  margin-bottom: 18px;
+}
+
+.recoveries-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--gold-deep);
+}
+
+.recoveries-pill {
+  font-family: var(--font-regal);
+  font-weight: 900;
+  color: #FFFFFF;
+  background: var(--gold-pure);
+  padding: 2px 8px;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+}
+
+.adjust-form {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.adjust-form label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: 8px;
+}
+
+.gloria-date-picker {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1.5px solid var(--gold-pure);
+  font-family: var(--font-ui);
+  font-size: 0.95rem;
+  color: var(--text-main);
+  background: #FFFFFF;
+  outline: none;
+}
+
+.adjust-hint {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 6px;
+}
+
+/* 13. MODAL SOS */
 .sos-card {
   border: 3px solid #FFD700;
   box-shadow: 0 0 50px rgba(255, 215, 0, 0.35);
@@ -833,20 +1121,20 @@ html, body {
 }
 
 .sos-emblem {
-  font-size: 3rem;
-  margin-bottom: 6px;
+  font-size: 2.8rem;
+  margin-bottom: 4px;
 }
 
 .sos-title {
   font-family: var(--font-regal);
-  font-size: 1.35rem;
+  font-size: 1.3rem;
   color: #8C6D23;
 }
 
 .sos-sub {
-  font-size: 0.88rem;
+  font-size: 0.85rem;
   color: var(--text-muted);
-  margin-bottom: 16px;
+  margin-bottom: 14px;
 }
 
 /* Respiración */
@@ -854,86 +1142,86 @@ html, body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 16px 0 20px;
+  margin: 14px 0 18px;
 }
 
 .gloria-sun-circle {
-  width: 130px;
-  height: 130px;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
   background: radial-gradient(circle, #FFF9E6 0%, #FFE082 80%);
   border: 3px solid var(--gold-pure);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+  box-shadow: 0 0 25px rgba(255, 215, 0, 0.5);
   animation: breatheSun 16s infinite cubic-bezier(0.4, 0, 0.6, 1);
 }
 
 #breathingText {
   font-family: var(--font-regal);
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 800;
   color: #6D4C00;
 }
 
 @keyframes breatheSun {
   0%, 100% { transform: scale(0.9); box-shadow: 0 0 15px rgba(255, 215, 0, 0.3); }
-  25% { transform: scale(1.22); box-shadow: 0 0 45px rgba(255, 215, 0, 0.8); }
-  50% { transform: scale(1.22); box-shadow: 0 0 45px rgba(255, 215, 0, 0.8); }
+  25% { transform: scale(1.2); box-shadow: 0 0 40px rgba(255, 215, 0, 0.8); }
+  50% { transform: scale(1.2); box-shadow: 0 0 40px rgba(255, 215, 0, 0.8); }
   75% { transform: scale(0.9); box-shadow: 0 0 15px rgba(255, 215, 0, 0.3); }
 }
 
 .breathe-hint {
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   color: var(--text-muted);
-  margin-top: 10px;
+  margin-top: 8px;
 }
 
 .escape-plan-box {
   background: var(--gold-light-bg);
   border: 1px solid rgba(212, 175, 55, 0.3);
   border-radius: 12px;
-  padding: 14px;
+  padding: 12px 14px;
   text-align: left;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
 }
 
 .escape-plan-box h4 {
-  font-size: 0.88rem;
+  font-size: 0.85rem;
   color: #8C6D23;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 
 .escape-plan-box ol {
   padding-left: 18px;
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   color: var(--text-main);
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 3px;
 }
 
 .rescue-verse {
   font-family: var(--font-serif);
-  font-size: 0.88rem;
+  font-size: 0.85rem;
   font-style: italic;
   background: #FFF;
   border-left: 3px solid var(--gold-pure);
   padding: 10px 14px;
   border-radius: 6px;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
   text-align: left;
 }
 
 .rescue-verse span {
   display: block;
   font-family: var(--font-regal);
-  font-size: 0.78rem;
+  font-size: 0.75rem;
   font-weight: 700;
   color: var(--gold-deep);
   text-align: right;
-  margin-top: 4px;
+  margin-top: 3px;
 }
 
 /* Botones genéricos de modales */
@@ -947,8 +1235,8 @@ html, body {
   background: transparent;
   color: var(--gold-deep);
   border: 1.5px solid var(--gold-pure);
-  padding: 10px 22px;
-  font-size: 0.9rem;
+  padding: 9px 20px;
+  font-size: 0.88rem;
   font-weight: 700;
   border-radius: 9999px;
   cursor: pointer;
@@ -965,13 +1253,16 @@ html, body {
   background: linear-gradient(135deg, #D4AF37, #F59E0B);
   color: #FFFFFF;
   border: none;
-  padding: 12px 24px;
-  font-size: 0.95rem;
+  padding: 10px 22px;
+  font-size: 0.9rem;
   font-weight: 700;
   border-radius: 9999px;
   cursor: pointer;
   box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
   transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .btn-gold-solid:hover {
@@ -984,7 +1275,7 @@ html, body {
   color: #FFFFFF;
   border: none;
   padding: 10px 20px;
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   font-weight: 700;
   border-radius: 9999px;
   cursor: pointer;
@@ -1002,6 +1293,7 @@ html, body {
 /* Modal Reinicio */
 .reset-card {
   text-align: center;
+  max-width: 500px;
 }
 
 .reset-icon {
@@ -1011,17 +1303,17 @@ html, body {
 
 .reset-quote {
   font-family: var(--font-serif);
-  font-size: 1rem;
+  font-size: 0.95rem;
   color: var(--gold-deep);
-  margin: 12px 0;
+  margin: 10px 0;
   font-style: italic;
 }
 
 .reset-msg {
-  font-size: 0.88rem;
+  font-size: 0.85rem;
   color: var(--text-muted);
   line-height: 1.5;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 
 .modal-button-group {
@@ -1049,8 +1341,8 @@ html, body {
 
 .future-inner p {
   color: var(--text-muted);
-  font-size: 0.92rem;
-  line-height: 1.6;
+  font-size: 0.9rem;
+  line-height: 1.5;
 }
 
 /* Animaciones */
